@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wishlist<%= yield(:title).blank? ? "" : sanitize(" | #{yield(:title)}") %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="main-container">
+      <div class="main-content container">
+        <% flash.each do |key, text| %>
+          <div class="row mt-sm-3 alert alert-<%= key %>">
+            <%= text %>
+          </div>
+        <% end %>
+        <%= yield %>
+      </div>
+      <div class="footer container">
+        <p class="row pt-sm-3">
+          <small><%= link_to "Make your own list", root_path %></small>
+          <small class="ml-auto"><%= link_to "Source code", "https://github.com/rmosolgo/wishlist-app" %></small>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
